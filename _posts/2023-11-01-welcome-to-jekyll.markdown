@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "Welcome to Jekyll!"
 # date:   <%= Time.now.strftime('%Y-%m-%d %H:%M:%S %z') %>
 categories: jekyll update
