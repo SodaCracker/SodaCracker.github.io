@@ -190,8 +190,8 @@ compress_html:
 
 # Defaults
 defaults:
-  # _posts
-  - scopes:
+  - 
+    scope:
       path: ""
       type: posts
     values:
