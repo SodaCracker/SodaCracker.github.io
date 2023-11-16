@@ -1,0 +1,7 @@
+main:
+  - title: "首页"
+    url: /index.html
+  - title: "开发"
+    url: /categories/devlog/
+  - title: "其它"
+    url: /categories/misc/
