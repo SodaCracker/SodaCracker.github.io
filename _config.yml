@@ -24,17 +24,18 @@
 
 # Theme
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "neon"
+minimal_mistakes_skin: "sunrise"
 
 # Site Settings
 locale: "zh-cn"
-title: Secret Lab
+title: Archive of My Own
 title_separator: "|"
-subtitle: WIP
+subtitle: "施工中 Version Beta 0.0.1"
 # description: >- # this means to ignore newlines until "baseurl:"
 #   Write an awesome description for your new site here. You can edit this
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
+name: "CyberCyan"
 description: "A Little Side Project"
 url: "https://www.cybercyan.site" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -48,7 +49,7 @@ comments:
     discussion_term      : "pathname" # "pathname" (default), "url", "title", "og:title"
     reactions_enabled    : '1' # '1' for enabled (default), '0' for disabled
     theme                : "dark" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
-words_per_minute: 600
+words_per_minute: 250
 date_format: "%Y-%-m-%-d"
 search: true
 search_full_content: true
@@ -65,14 +66,13 @@ github:
 # Site Author
 author:
   name: "CyberCyan"
-  # avatar :     
-  bio: "Still figuring out..."
-  location: "A cubicle"
-  email: genius0610@gmail.com
+  # avatar: "/assets/images/bio-photo.jpg" 
+  bio: "一个好人（大概）"
+  location: "Shanghai"
   links:
-    # - label: "Email"
-    #   icon: "fas fa-fw fa-envelope-square"
-    #   url: "mailto:genius0610@gmail.com"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:genius0610@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://www.cybercyan.site"
@@ -196,9 +196,15 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profiles: true
+      author_profiles: false
       show_date: true
       read_time: true
       comments: true
-      share: true
-      related: true
+      share: false
+      related: false
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
