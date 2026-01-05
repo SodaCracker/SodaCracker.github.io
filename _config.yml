@@ -36,7 +36,7 @@ subtitle: "施工中 Version Beta 0.0.1"
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 name: "CyberCyan"
-description: "A Little Side Project"
+description: "Compiling"
 url: "https://www.cybercyan.site" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 repository: "SodaCracker/SodaCracker.github.io"
