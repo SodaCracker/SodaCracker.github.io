@@ -275,6 +275,7 @@ DEPENDENCIES
   github-pages (~> 228)
   jekyll-include-cache
   minimal-mistakes-jekyll
+  nokogiri (>= 1.16.2)
   webrick
 
 BUNDLED WITH
