@@ -74,6 +74,13 @@ nav {
 .nav-links a { font-family: var(--mono); font-size: .72rem; letter-spacing: 1.5px; color: var(--text-dim); text-transform: uppercase; }
 .nav-links a:hover { color: var(--gold); }
 
+/* Language Switcher */
+.lang-switcher { font-family: var(--mono); font-size: .72rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+.lang-switcher .lang-link { color: var(--text-dim); cursor: pointer; }
+.lang-switcher .lang-link:hover { color: var(--gold-bright); }
+.lang-switcher .lang-link.active { color: var(--gold); font-weight: 700; }
+.lang-switcher .lang-sep { color: var(--line); }
+
 /* Theme Toggle Button */
 .theme-toggle {
     display: inline-flex; align-items: center; justify-content: center;

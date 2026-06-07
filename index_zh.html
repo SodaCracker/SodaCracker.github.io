@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卫悦 · 资深客户端开发</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<style>
+  body { font-family: var(--sans), -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; font-weight: 400; }
+  .kicker, .subtitle, .nav-name, .sec-label h2 { letter-spacing: 0 !important; }
+  .nav-name { font-size: 1rem; }
+  .maintitle { letter-spacing: 0; }
+</style>
+<script>
+    (function () {
+        try {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-name">卫<b>悦</b></div>
+      <div class="nav-links">
+        <div class="lang-switcher">
+          <a href="index.html" class="lang-link">EN</a>
+          <span class="lang-sep">/</span>
+          <span class="lang-link active">中</span>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <span class="icon-sun">&#9728;</span>
+            <span class="icon-moon">&#9789;</span>
+        </button>
+        <a class="dl-btn" href="resume2026_zh.pdf" download="Yue-Wei-Resume-2026_zh.pdf">下载简历</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="head-inner">
+      <div class="kicker">Game Client Engineering</div>
+      <h1 class="maintitle">卫悦</h1>
+      <div class="subtitle">高级 Unity 客户端开发工程师 · 移动端 (iOS / Android)</div>
+      <div class="contact">
+        <a href="mailto:genius0610@gmail.com">genius0610@gmail.com</a>
+        <span class="sep">/</span>
+        <span>+86 134 0203 7271</span>
+      </div>
+      <p class="summary">
+        7年以上 Unity 3D (C#) 游戏客户端开发经验，曾参与<b>《梦幻模拟战》</b>(Langrisser Mobile) 和<b>《第二银河》</b>(Second Galaxy) 等流水千万级商业移动端大作的研发与长线运营。<br><br>在<b>移动端性能优化</b>方面具备深厚积累——精通 DrawCall 动静分离合批、UI重建控制、严格的 GC 与内存泄漏排查、基于对象池的实体管理，能够保障多档位设备下的帧率稳定性。熟练在生产环境中使用 <b>HybridCLR 实现 C# 逻辑热更新</b>，打通资源与代码的自动化交付管线，实现核心业务模块的快速线上修复与版本迭代。<br><br>具备跨语言工程能力（C# / Python / C++），热衷于开发自动化编辑器工具及资产管线，大幅优化技术美术与策划的多人协作开发流。
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ WORK ============ -->
+  <div class="sec-label fade-in" id="work">
+    <span class="tag-no">01</span><h2>工作经历</h2><span class="rule"></span>
+  </div>
+
+  <main class="games">
+
+    <!-- Zlongame - Langrisser -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle"><a href="https://apps.apple.com/cn/app/id1435314243" target="_blank" rel="noopener">梦幻模拟战</a></h2>
+          <div class="studio">紫龙游戏 · 黑杰克工作室 — 2019年5月–至今</div>
+          <p class="blurb">作为高级客户端开发，参与这款长线运营的战棋 SRPG 大作（iOS & Android）。该游戏在国内外均取得了巨大商业成功，并在多个国家/地区（中/日/韩/东南亚/欧美）持续开展长线运营与更新。</p>
+          <div class="contrib">
+            <ul>
+              <li><b>核心玩法系统开发：</b>深度参与长线生命周期，全栈负责通行证、荣誉系统、巅峰测试副本等大型系统。设计并实现了包含10余种随机事件逻辑（如黑市、祭坛）的底层状态机及对应复杂的深层 UI 嵌套逻辑。</li>
+              <li><b>热更新架构落地：</b>在现有工程中成功集成并应用 HybridCLR 技术，实现了客户端底层逻辑与战斗系统的原生 C# 热更新，极大地缩短了线上紧急 Bug 的修复周期并摆脱了频繁的 App Store 发版依赖。</li>
+              <li><b>对话系统底层重构：</b>针对旧版对话系统高度耦合的问题，通过数据驱动思想重构了包含复杂特效与分支走向的剧情系统。构建了高复用性的底层 Prefab 架构，彻底清除了新增剧情配置时常发的功能性 Bug。</li>
+              <li><b>极限性能优化：</b>针对"巅峰竞技场"等超长列表模块进行渲染重构。通过自行实现基于视口的组件复用机制（Recycling Loop），配合严格的 DrawCall 管理与 GC 拦截，使游戏从滑动时瞬时骤降至 10fps 成功恢复至极度平滑的 60fps。</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Unity 3D</li><li>C#</li><li>UGUI</li><li>HybridCLR</li><li>性能优化</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zlongame - Unreleased JRPG -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">动作 RPG — 项目原型</h2>
+          <div class="studio">紫龙游戏 · 黑杰克工作室 — 2019年5月–至今</div>
+          <p class="blurb">一款实时战斗的动作 RPG 游戏原型。</p>
+          <div class="contrib">
+            <ul>
+              <li><b>战斗 UI 与时序控制：</b>从零构建了基于全局对象池的战斗 UI 和全屏伤害跳字系统，彻底规避了战斗高频实例化带来的 Native API GC 峰值。通过严格的时间轴控制，历经多次战斗框架重构，始终确保跳字表现与深层伤害结算保持严格的逻辑与表现对齐。</li>
+              <li><b>NavMesh 定制与寻路：</b>针对项目中复杂的立体与大坡度地貌，深入解读并魔改了一套开源 NavMesh 生成器，将其定制开发为专用的项目寻路插件，大幅降低了关卡策划在开放大地图上的寻路节点配置成本。</li>
+              <li><b>编辑器工具与音频：</b>独立开发了"UI层级管理器"与"脚步声层级编辑器"等配套工具。实现了基于射线检测与材质物理属性绑定的音频混合系统，极大提升了视听表现力与团队工作流效率。</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>实时战斗</li><li>战斗 UI</li><li>对象池</li><li>NavMesh</li><li>编辑器扩展</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Second Galaxy -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle"><a href="https://secondgalaxy.zlongame.com/index_en.html" target="_blank" rel="noopener">第二银河</a></h2>
+          <div class="studio">紫龙游戏 · 黑杰克工作室 — 2019年5月–至今</div>
+          <p class="blurb">一款面向 iOS & Android 的科幻 MMO 游戏（入职试炼项目）。</p>
+          <div class="contrib">
+            <ul>
+              <li><b>前端开发与协作：</b>独立完成了星系悬赏系统与全服排行榜的前端完整逻辑。在此期间迅速掌握了巨型 MMO 项目的基础组件规范与多人 Git 分支协作工作流。</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>MMO</li><li>前端开发</li><li>Git 团队协作</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Wolf Smoke Studio -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">独立 RPG 游戏</h2>
+          <div class="studio">狼烟工作室 — 2022年12月–2023年5月</div>
+          <p class="blurb">一款剧情驱动的独立 RPG 游戏。作为业余项目，担任客户端核心开发。</p>
+          <div class="contrib">
+            <ul>
+                <li><b>从零到一架构设计：</b>脱离成熟商业框架，为一款剧情驱动独立 RPG 游戏从零搭建了完整的客户端底层架构，包含：事件总线系统、场景生命周期管理、基础 UI 框架等核心模块。</li>
+                <li><b>资源自动化管线：</b>使用 Python 构建了 Excel→JSON 游戏数据解析的自动化编译工具链。通过自动反序列化直接映射至 C# 客户端数据结构，极大提升了策划配置关卡与数值的迭代效率。</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>剧情驱动 RPG</li><li>独立游戏</li><li>0到1架构</li><li>管线自动化</li><li>Python</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CPIC — pre-game background, condensed -->
+    <section class="game fade-in last">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">职业转型与早期经历</h2>
+          <div class="studio">中国太平洋保险 (CPIC) · 渠道客户经理 — 2012年9月–2018年6月</div>
+          <p class="blurb">在职期间通过自学完成计算机科学的系统性学习，获得复旦大学软件工程硕士学位。主导开发了基于 CNN 图像识别的机器学习科研项目，积累了扎实的 C++ 与算法底子，随后成功跨行跃迁至游戏开发领域。</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ TOOLBOX ============ -->
+  <div class="sec-label fade-in" id="toolbox">
+    <span class="tag-no">02</span><h2>技能与工具栈</h2><span class="rule"></span>
+  </div>
+  <section class="toolbox fade-in">
+    <div class="tool-row"><div class="tool-key">引擎与语言</div><div class="tool-val">Unity 3D <span class="dot">·</span> C# <span class="dot">·</span> C++ <span class="dot">·</span> Python</div></div>
+    <div class="tool-row"><div class="tool-key">移动端性能</div><div class="tool-val">DrawCall 优化 <span class="dot">·</span> GC与内存分析 <span class="dot">·</span> 对象池系统 <span class="dot">·</span> 帧率稳定控制 <span class="dot">·</span> 极长列表缓存渲染 <span class="dot">·</span> Unity Profiler</div></div>
+    <div class="tool-row"><div class="tool-key">客户端与UI</div><div class="tool-val">UGUI 底层机制 <span class="dot">·</span> 状态机与行为树 <span class="dot">·</span> 高复用 Prefab 架构 <span class="dot">·</span> 复杂 UI 流与对话系统</div></div>
+    <div class="tool-row"><div class="tool-key">管线与工具</div><div class="tool-val">HybridCLR 代码热更 <span class="dot">·</span> 自定义编辑器扩展 <span class="dot">·</span> 资产加载管线 <span class="dot">·</span> Excel→JSON 自动化 <span class="dot">·</span> Git 协作</div></div>
+    <div class="tool-row"><div class="tool-key">AI 辅助开发</div><div class="tool-val">Claude Code <span class="dot">·</span> Codex <span class="dot">·</span> Antigravity <span class="dot">·</span> MCP 工具</div></div>
+    <div class="tool-row"><div class="tool-key">算法及其他</div><div class="tool-val">机器学习算法 / CNN <span class="dot">·</span> CUDA 并行计算 <span class="dot">·</span> Caffe 框架</div></div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <div class="sec-label fade-in" id="education">
+    <span class="tag-no">03</span><h2>教育背景</h2><span class="rule"></span>
+  </div>
+  <section class="edu fade-in">
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">软件工程硕士</span> &nbsp;<span class="edu-school">复旦大学</span></div>
+        <span class="edu-date">2015年9月 — 2018年6月</span>
+      </div>
+      <div class="edu-note">毕业论文:《基于 CNN/CUDA 的轨道扣件异常缺陷识别系统的设计与实现》</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">管理科学学士</span> &nbsp;<span class="edu-school">上海海事大学</span></div>
+        <span class="edu-date">2008年9月 — 2012年6月</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-hr"></div>
+    <p>&copy; 2026 卫悦 · All rights reserved.</p>
+    <p class="mono">Unity / C# · Mobile (iOS & Android)</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
