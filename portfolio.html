@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yue Wei · Game Client Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0d;
+    --bg-soft:#141417;
+    --bg-card:#101013;
+    --text:#e4e3df;
+    --text-dim:#9a9893;
+    --text-faint:#615f5a;
+    --head:#ffffff;
+    --gold:#d4af37;
+    --gold-bright:#f1c96b;
+    --gold-dim:#8a7430;
+    --line:#26262a;
+    --line-soft:#1c1c20;
+    --serif:'Libre Baskerville',Georgia,serif;
+    --sans:'Inter',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.65;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* atmospheric depth: top gold glow + grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(900px 460px at 50% -160px, rgba(212,175,55,.10), transparent 70%),
+      radial-gradient(700px 700px at 100% 8%, rgba(212,175,55,.04), transparent 60%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;}
+  a{color:var(--gold);text-decoration:none;transition:color .2s ease;}
+  a:hover{color:var(--gold-bright);}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(11,11,13,.72);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--max);margin:0 auto;padding:14px 28px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-name{font-family:var(--mono);font-size:.78rem;letter-spacing:2px;color:var(--text);text-transform:uppercase;}
+  .nav-name b{color:var(--gold);font-weight:700;}
+  .nav-links{display:flex;gap:26px;}
+  .nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;color:var(--text-dim);text-transform:uppercase;}
+  .nav-links a:hover{color:var(--gold);}
+  @media(max-width:620px){.nav-links{display:none;}}
+
+  /* ---------- Header ---------- */
+  header{padding:90px 28px 56px;border-bottom:1px solid var(--line);}
+  .head-inner{max-width:860px;margin:0 auto;text-align:center;}
+  .kicker{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:5px;
+    color:var(--gold);text-transform:uppercase;margin-bottom:26px;
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .kicker::before,.kicker::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim));}
+  .kicker::after{background:linear-gradient(90deg,var(--gold-dim),transparent);}
+  .maintitle{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(2.2rem,6vw,3.7rem);line-height:1.05;
+    color:var(--head);letter-spacing:1px;margin-bottom:18px;
+  }
+  .maintitle .by{color:var(--gold);font-style:italic;font-weight:400;}
+  .subtitle{
+    font-family:var(--mono);font-size:.86rem;letter-spacing:2px;
+    color:var(--text-dim);text-transform:uppercase;margin-bottom:26px;
+  }
+  .contact{
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+    gap:8px 16px;font-size:.86rem;color:var(--text-dim);margin-bottom:18px;
+  }
+  .contact .sep{color:var(--line);}
+  .avail{
+    font-family:var(--mono);font-size:.7rem;letter-spacing:1px;
+    color:var(--gold);border:1px solid var(--gold-dim);border-radius:3px;
+    padding:5px 12px;text-transform:uppercase;
+  }
+  .summary{
+    max-width:680px;margin:30px auto 0;color:var(--text-dim);
+    font-size:1rem;line-height:1.85;
+  }
+  .summary b{color:var(--text);font-weight:500;}
+
+  /* ---------- Section heading ---------- */
+  .sec-label{
+    max-width:var(--max);margin:0 auto;padding:64px 28px 0;
+    display:flex;align-items:center;gap:16px;
+  }
+  .sec-label .tag-no{font-family:var(--mono);font-size:.75rem;color:var(--gold);letter-spacing:2px;}
+  .sec-label h2{
+    font-family:var(--serif);font-size:1.4rem;color:var(--head);font-weight:700;letter-spacing:.5px;
+  }
+  .sec-label .rule{flex:1;height:1px;background:var(--line);}
+
+  /* ---------- Projects ---------- */
+  .games{max-width:var(--max);margin:0 auto;padding:0 28px;}
+  .game{border-bottom:1px dashed var(--line);padding:56px 0;}
+  .game.last{border-bottom:none;}
+  .game-inner{display:flex;flex-wrap:wrap;gap:44px;}
+  .left{flex:1 1 480px;min-width:0;}
+  .right{flex:0 1 320px;display:flex;flex-direction:column;gap:16px;}
+
+  .pnum{
+    font-family:var(--serif);font-size:2.4rem;color:var(--line);
+    line-height:1;float:left;margin:-2px 16px 0 0;font-weight:700;
+  }
+  .ptitle{font-family:var(--serif);font-size:1.85rem;color:var(--head);font-weight:700;line-height:1.1;margin-bottom:6px;}
+  .studio{font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.6px;text-transform:uppercase;margin-bottom:20px;}
+  .blurb{color:var(--text-dim);font-size:1rem;margin-bottom:22px;clear:both;}
+
+  .contrib{background:var(--bg-card);border:1px solid var(--line-soft);border-left:2px solid var(--gold);border-radius:6px;padding:20px 22px;}
+  .contrib-head{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+  .contrib-head::before{content:"★ ";color:var(--gold);}
+  .contrib ul{list-style:none;}
+  .contrib li{position:relative;padding-left:18px;margin-bottom:12px;color:var(--text-dim);font-size:.94rem;line-height:1.6;}
+  .contrib li:last-child{margin-bottom:0;}
+  .contrib li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);}
+  .contrib li b{color:var(--text);font-weight:600;}
+
+  .tags{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;}
+  .tags li{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.5px;
+    padding:5px 12px;border:1px solid var(--line);border-radius:4px;
+    color:var(--text-dim);transition:all .2s ease;
+  }
+  .tags li:hover{border-color:var(--gold);color:var(--gold);}
+
+  .genre{
+    font-family:var(--serif);font-style:italic;color:var(--gold);
+    font-size:1.05rem;text-align:right;
+  }
+  .media{
+    width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:8px;
+    background:
+      linear-gradient(135deg,rgba(212,175,55,.05),transparent 60%),
+      var(--bg-soft);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:18px;position:relative;overflow:hidden;
+    transition:transform .35s ease,border-color .35s ease;
+  }
+  .media::before,.media::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--gold-dim);opacity:.5;transition:opacity .3s;}
+  .media::before{top:10px;left:10px;border-right:none;border-bottom:none;}
+  .media::after{bottom:10px;right:10px;border-left:none;border-top:none;}
+  .media:hover{transform:translateY(-5px);border-color:var(--gold);}
+  .media:hover::before,.media:hover::after{opacity:1;}
+  .media .mc span{display:block;font-family:var(--mono);font-size:.78rem;letter-spacing:1px;color:var(--text);text-transform:uppercase;margin-bottom:6px;}
+  .media .mc small{font-size:.72rem;color:var(--text-faint);}
+  @media(max-width:850px){.right{flex:1 1 100%;}.genre{text-align:left;}}
+
+  /* ---------- Toolbox ---------- */
+  .toolbox{max-width:var(--max);margin:0 auto;padding:8px 28px 0;}
+  .tool-row{display:flex;gap:22px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line-soft);}
+  .tool-row:last-child{border-bottom:none;}
+  .tool-key{flex:0 0 170px;font-family:var(--mono);font-size:.74rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;}
+  .tool-val{flex:1;color:var(--text);font-size:.95rem;}
+  .tool-val .dot{color:var(--text-faint);margin:0 6px;}
+  @media(max-width:620px){.tool-row{flex-direction:column;gap:4px;}.tool-key{flex:none;}}
+
+  /* ---------- Education ---------- */
+  .edu{max-width:var(--max);margin:0 auto;padding:8px 28px 0;}
+  .edu-item{padding:20px 0;border-bottom:1px solid var(--line-soft);}
+  .edu-item:last-child{border-bottom:none;}
+  .edu-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;}
+  .edu-deg{font-family:var(--serif);font-size:1.15rem;color:var(--head);font-weight:700;}
+  .edu-school{color:var(--text-dim);font-size:.92rem;}
+  .edu-date{font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.5px;}
+  .edu-note{color:var(--text-dim);font-size:.88rem;font-style:italic;margin-top:6px;}
+  .edu-note.plain{font-style:normal;color:var(--text-faint);}
+
+  /* ---------- Footer ---------- */
+  footer{padding:60px 28px 48px;text-align:center;color:var(--text-faint);font-size:.82rem;}
+  .foot-hr{width:90px;height:1px;background:var(--gold-dim);margin:0 auto 22px;opacity:.6;}
+  footer p{margin-bottom:6px;}
+  footer .mono{font-family:var(--mono);letter-spacing:.5px;}
+
+  /* ---------- Fade-in ---------- */
+  .fade-in{opacity:0;transform:translateY(22px);transition:opacity .8s ease-out,transform .8s ease-out;}
+  .fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-name">YUE <b>WEI</b></div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#toolbox">Toolbox</a>
+        <a href="#education">Education</a>
+        <a href="mailto:genius0610@gmail.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="head-inner">
+      <div class="kicker">Game Client Engineering</div>
+      <h1 class="maintitle">Games <span class="by">by</span> Yue Wei</h1>
+      <div class="subtitle">Senior Game Client Developer · Unity / C#</div>
+      <div class="contact">
+        <a href="mailto:genius0610@gmail.com">genius0610@gmail.com</a>
+        <span class="sep">/</span>
+        <span>+86 134 0203 7271</span>
+      </div>
+      <div><span class="avail">Remote-ready · English working language · Shanghai UTC+8</span></div>
+      <p class="summary">
+        Senior Unity 3D (C#) game client developer with <b>7+ years</b> building front-end systems for top-tier
+        commercial titles across anime-style and tactics (SLG / SRPG) genres. Deep expertise in <b>UGUI internals</b>,
+        UI performance optimization (DrawCall reduction, GC control), and complex UI state-machine management.
+        Cross-language engineer (C# / Python / C++) who builds editor tools and automation pipelines that streamline studio workflows.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ WORK ============ -->
+  <div class="sec-label fade-in" id="work">
+    <span class="tag-no">01</span><h2>Selected Work</h2><span class="rule"></span>
+  </div>
+
+  <main class="games">
+
+    <!-- Project L -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <span class="pnum">L</span>
+          <h2 class="ptitle">Project&nbsp;L</h2>
+          <div class="studio">Zlongame · Blackjack Studio — 2019–Present</div>
+          <p class="blurb">A flagship strategy-RPG with intricate gameplay systems, deep meta-progression, and a large, effects-heavy UI surface.</p>
+          <div class="contrib">
+            <div class="contrib-head">Key Contributions</div>
+            <ul>
+              <li><b>Core systems ownership:</b> delivered key gameplay modules end-to-end — Battle Pass skins, Honor System, and Peak Test dungeon — including logic for 10+ randomized events (black market, altar) and deeply nested popups.</li>
+              <li><b>Dialog system rebuild:</b> re-architected the multi-state, effects-aware dialog system, eliminating a long-standing class of bugs that surfaced whenever new dialog content was added; built a high-reuse Prefab system on top.</li>
+              <li><b>Long-list performance:</b> rebuilt the underlying rendering and caching for very long lists such as the Peak Arena, restoring frame rate from momentary ~10 fps drops to a stable 60 fps.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Unity 3D</li><li>C#</li><li>UGUI</li><li>State Machines</li><li>Prefab Architecture</li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="genre">Flagship Tactics · SLG</div>
+          <div class="media"><div class="mc"><span>SRPG Gameplay</span><small>Replace with actual game media</small></div></div>
+          <div class="media"><div class="mc"><span>UI / Long-list Optimization</span><small>Replace with actual game media</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project B -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <span class="pnum">B</span>
+          <h2 class="ptitle">Project&nbsp;B</h2>
+          <div class="studio">Zlongame · Blackjack Studio — 2019–Present</div>
+          <p class="blurb">A large-scale JRPG with real-time combat, expansive exploration, and rich, layered environments.</p>
+          <div class="contrib">
+            <div class="contrib-head">Key Contributions</div>
+            <ul>
+              <li><b>Combat UI &amp; timing accuracy:</b> built the core battle UI and full-screen damage-number system — object-pooled by design to avoid native-API GC. The hard part was timing: keeping numbers perfectly in sync with damage resolution through repeated combat refactors and changing damage mechanics.</li>
+              <li><b>NavMesh customization:</b> customized a NavMesh generator from an open-source base and built a dedicated pathfinding plugin for complex sloped terrain, simplifying node configuration for large open-world maps.</li>
+              <li><b>Custom tooling:</b> built "UI Layer Manager" and "Footstep Layer Editor" to streamline art and design workflows.</li>
+              <li><b>Audio immersion:</b> developed a footstep-sound blending system that handles transitions across complex surface materials.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Unity 3D</li><li>Tool Development</li><li>NavMesh</li><li>Combat Systems</li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="genre">Large-Scale JRPG</div>
+          <div class="media"><div class="mc"><span>Battle Interface</span><small>Replace with actual game media</small></div></div>
+          <div class="media"><div class="mc"><span>Custom Editor Tool</span><small>Replace with actual game media</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project A & Indie -->
+    <section class="game fade-in last">
+      <div class="game-inner">
+        <div class="left">
+          <span class="pnum">A</span>
+          <h2 class="ptitle">Indie RPG &amp; Project&nbsp;A</h2>
+          <div class="studio">Langyan Studio (side project, 2022–2023) / Zlongame</div>
+          <p class="blurb">From-scratch client architecture for an indie title, plus front-end logic for a commercial MMORPG.</p>
+          <div class="contrib">
+            <div class="contrib-head">Key Contributions</div>
+            <ul>
+              <li><b>0-to-1 architecture (side project):</b> designed and built the core client architecture and full game lifecycle for an indie title from scratch, independent of any mature studio framework.</li>
+              <li><b>Resource pipeline:</b> built an automated Excel→JSON conversion tool bridging data tables to client deserialization, vastly improving iteration speed for stats and levels.</li>
+              <li><b>MMORPG logic:</b> implemented front-end logic for the bounty-posting system and leaderboard on Project A (onboarding project).</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Architecture</li><li>Data Pipelines</li><li>Python</li><li>MMORPG</li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="genre">Indie &amp; MMORPG</div>
+          <div class="media"><div class="mc"><span>Indie Client Architecture</span><small>Replace with actual game media</small></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ TOOLBOX ============ -->
+  <div class="sec-label fade-in" id="toolbox">
+    <span class="tag-no">02</span><h2>Toolbox</h2><span class="rule"></span>
+  </div>
+  <section class="toolbox fade-in">
+    <div class="tool-row"><div class="tool-key">Engine / Lang</div><div class="tool-val">Unity 3D <span class="dot">·</span> C# <span class="dot">·</span> C++ <span class="dot">·</span> Python</div></div>
+    <div class="tool-row"><div class="tool-key">Client</div><div class="tool-val">UGUI <span class="dot">·</span> UI performance <span class="dot">·</span> state machines <span class="dot">·</span> Prefab architecture <span class="dot">·</span> object pooling <span class="dot">·</span> asset pipeline &amp; serialization</div></div>
+    <div class="tool-row"><div class="tool-key">Tooling</div><div class="tool-val">Custom editor tools <span class="dot">·</span> NavMesh customization <span class="dot">·</span> Excel→JSON automation <span class="dot">·</span> Git</div></div>
+    <div class="tool-row"><div class="tool-key">AI-Assisted Dev</div><div class="tool-val">Claude Code <span class="dot">·</span> Codex <span class="dot">·</span> Antigravity <span class="dot">·</span> MCP tooling</div></div>
+    <div class="tool-row"><div class="tool-key">Algorithms</div><div class="tool-val">Machine Learning / CNN <span class="dot">·</span> CUDA <span class="dot">·</span> Caffe</div></div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <div class="sec-label fade-in" id="education">
+    <span class="tag-no">03</span><h2>Education &amp; Background</h2><span class="rule"></span>
+  </div>
+  <section class="edu fade-in">
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">M.Eng., Software Engineering</span> &nbsp;<span class="edu-school">Fudan University</span></div>
+        <span class="edu-date">2015 – 2018</span>
+      </div>
+      <div class="edu-note">Thesis: Design and Implementation of an Anomaly Defect Recognition System for Rail Fasteners (CNN / CUDA / Caffe)</div>
+      <div class="edu-note plain">Earned while working full-time — a self-driven career switch from insurance into game development.</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">B.Mgmt., Management Science</span> &nbsp;<span class="edu-school">Shanghai Maritime University</span></div>
+        <span class="edu-date">2008 – 2012</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-hr"></div>
+    <p>&copy; 2026 Yue Wei · All rights reserved.</p>
+    <p class="mono">Unity / C# · Built with HTML, CSS &amp; JS</p>
+  </footer>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const els=document.querySelectorAll('.fade-in');
+  const io=new IntersectionObserver((entries,obs)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        const sibs=Array.from(e.target.parentElement.children).filter(c=>c.classList.contains('fade-in'));
+        e.target.style.transitionDelay=(Math.min(sibs.indexOf(e.target),3)*0.08)+'s';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:"0px 0px -40px 0px"});
+  els.forEach(el=>io.observe(el));
+});
+</script>
+</body>
+</html>

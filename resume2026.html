@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yue Wei — Resume 2026</title>
+<!--
+  ============================================================
+  PDF SOURCE FILE for resume2026.pdf
+  ------------------------------------------------------------
+  To regenerate the PDF:
+    1. Open this file in Chrome.
+    2. Ctrl/Cmd + P  →  Destination: "Save as PDF".
+    3. Paper: A4 · Margins: None · Background graphics: ON.
+    4. Save as  resume2026.pdf  (overwrite the one in this folder).
+
+  To tailor per company:
+    - Edit the text directly below. The most common edits are
+      the SUMMARY bullets (.sum li) and the role TITLE line.
+    - Everything is one self-contained file; no build step.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:    #1c1c1e;
+    --body:   #33343a;
+    --muted:  #6c6e75;
+    --faint:  #9a9ca3;
+    --accent: #2f6f6b;   /* deep teal */
+    --accent2:#3f8b86;
+    --line:   #d9d7d0;
+    --line2:  #e8e6df;
+    --chip-bg:#f1efe9;
+    --sans:'Inter',-apple-system,Segoe UI,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  /* Print geometry */
+  @page{ size:A4; margin:0; }
+  html,body{ background:#f4f3ee; }
+  body{
+    font-family:var(--sans);
+    color:var(--body);
+    font-weight:300;
+    font-size:9.4px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    background:#ffffff;
+    padding:12mm 15mm 10mm;
+  }
+
+  a{ color:var(--accent); text-decoration:none; }
+
+  /* ---------- Header ---------- */
+  .head{ display:flex; justify-content:space-between; align-items:flex-start; gap:18px; }
+  .name{
+    font-size:30px; font-weight:700; letter-spacing:.16em;
+    color:var(--ink); line-height:1;
+  }
+  .role{
+    margin-top:9px; font-size:9px; font-weight:600; letter-spacing:.26em;
+    color:var(--accent); text-transform:uppercase;
+  }
+  .contact{ text-align:right; font-size:9px; color:var(--muted); line-height:1.7; white-space:nowrap; }
+  .contact .em{ color:var(--ink); }
+  .locbox{
+    display:inline-block; margin-top:8px; padding:4px 9px;
+    border:1px solid var(--line); border-radius:3px;
+    font-size:8px; letter-spacing:.04em; color:var(--muted);
+  }
+
+  /* ---------- Section header ---------- */
+  .sec{ margin-top:14px; }
+  .sec-h{ display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+  .sec-h .no{ font-family:var(--mono); font-size:9px; color:var(--accent); font-weight:500; }
+  .sec-h .t{ font-size:10px; font-weight:700; letter-spacing:.28em; color:var(--ink); text-transform:uppercase; }
+  .sec-h .rule{ flex:1; height:1px; background:var(--line2); }
+
+  /* ---------- Summary ---------- */
+  .sum{ list-style:none; }
+  .sum li{ position:relative; padding-left:14px; margin-bottom:5px; }
+  .sum li::before{
+    content:""; position:absolute; left:0; top:5px;
+    width:5px; height:5px; background:var(--accent); border-radius:1px;
+  }
+  .sum strong, .item strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Skills ---------- */
+  .skills{ display:grid; grid-template-columns:118px 1fr; row-gap:6px; column-gap:14px; }
+  .skills dt{ font-family:var(--mono); font-size:8px; letter-spacing:.06em; color:var(--faint); text-transform:uppercase; padding-top:1px; }
+  .skills dd{ color:var(--body); }
+  .skills dd b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Experience ---------- */
+  .job{ margin-bottom:11px; }
+  .job-h{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .job-h .co{ font-size:11px; font-weight:700; color:var(--ink); }
+  .job-h .co .studio{ font-weight:400; color:var(--muted); font-size:10px; }
+  .job-h .role2{ color:var(--muted); font-size:9px; }
+  .job-h .date{ font-family:var(--mono); font-size:8px; color:var(--faint); white-space:nowrap; }
+  .job-rule{ height:1px; background:var(--line2); margin:6px 0 7px; }
+  .note{ color:var(--muted); font-size:8.6px; margin-top:3px; }
+
+  .proj{ margin:7px 0 4px; }
+  .proj .pname{ font-weight:600; color:var(--accent); font-size:9.6px; }
+  .chip{
+    display:inline-block; margin-left:6px; padding:1px 6px;
+    background:var(--chip-bg); border-radius:3px;
+    font-family:var(--mono); font-size:7px; letter-spacing:.04em;
+    color:var(--muted); text-transform:uppercase; vertical-align:middle;
+  }
+  .link{ display:block; margin:2px 0 4px; font-size:8.5px; color:var(--accent2); }
+  .link::before{ content:"\2197"; margin-right:4px; }
+
+  .item{ list-style:none; }
+  .item li{ position:relative; padding-left:15px; margin-bottom:4px; }
+  .item li::before{
+    content:"\25C7"; position:absolute; left:0; top:0;
+    color:var(--accent2); font-size:8px;
+  }
+
+  /* ---------- Education ---------- */
+  .edu{ display:flex; flex-direction:column; gap:7px; }
+  .edu-row{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .edu-row .sch{ font-size:10px; font-weight:700; color:var(--ink); }
+  .edu-row .deg{ color:var(--muted); font-size:9px; }
+  .edu-row .date{ font-family:var(--mono); font-size:8px; color:var(--faint); white-space:nowrap; }
+  .edu .thesis{ font-style:italic; color:var(--muted); font-size:8.5px; margin-top:1px; }
+
+  @media screen{
+    body{ padding:24px 0; }
+    .page{ box-shadow:0 10px 40px rgba(0,0,0,.16); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="head">
+    <div>
+      <div class="name">YUE WEI</div>
+      <div class="role">Senior Unity Developer · Mobile (iOS / Android)</div>
+    </div>
+    <div class="contact">
+      <div>+86 134 0203 7271</div>
+      <div class="em">genius0610@gmail.com</div>
+      <div class="locbox">Remote-ready · English working language · Shanghai UTC+8</div>
+    </div>
+  </header>
+
+  <!-- ============ 01 SUMMARY ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">01</span><span class="t">Summary</span><span class="rule"></span></div>
+    <ul class="sum">
+      <li><strong>7+ years building Unity 3D (C#) game clients</strong> for top-tier commercial mobile titles, with shipped credits on <strong>Langrisser Mobile</strong> and <strong>Second Galaxy</strong>.</li>
+      <li>Deep expertise in <strong>mobile client performance</strong> — DrawCall reduction, GC and memory control, object pooling, and stable frame-rates across devices.</li>
+      <li>Experienced with <strong>C# hot-update via HybridCLR</strong> for over-the-air code delivery, and shipping complex gameplay systems on long-running live ops.</li>
+      <li>Cross-language engineer (C# / Python / C++) who builds editor tools and asset pipelines to streamline multi-developer workflows.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 02 SKILLS ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">02</span><span class="t">Skills</span><span class="rule"></span></div>
+    <dl class="skills">
+      <dt>Engine / Lang</dt>      <dd><b>Unity 3D</b> · <b>C#</b> · C++ · Python</dd>
+      <dt>Mobile Perf</dt>        <dd>DrawCall reduction · GC &amp; memory control · object pooling · frame-rate stability on device · long-list rendering · Unity Profiler · Frame Debugger</dd>
+      <dt>Client / UI</dt>        <dd>UGUI internals · state-machine mgmt · Prefab architecture · complex UI flows &amp; dialog systems</dd>
+      <dt>Pipeline / Tooling</dt> <dd>HybridCLR hot-update (OTA) · custom editor tools · asset pipeline &amp; serialization · Excel→JSON automation · Git</dd>
+      <dt>AI-Assisted Dev</dt>    <dd>Claude Code · Codex · Antigravity · MCP tooling</dd>
+      <dt>Algorithms / etc</dt>   <dd>Machine Learning / CNN · CUDA · Caffe</dd>
+    </dl>
+  </section>
+
+  <!-- ============ 03 EXPERIENCE ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">03</span><span class="t">Experience</span><span class="rule"></span></div>
+
+    <div class="job">
+      <div class="job-h">
+        <div class="co">Zlongame · Blackjack Studio <span class="role2">— Senior Game Client Developer</span></div>
+        <div class="date">May 2019 — Present</div>
+      </div>
+      <div class="job-rule"></div>
+
+      <div class="proj">
+        <span class="pname">Langrisser Mobile</span><span class="chip">Tactical RPG / SRPG</span><span class="chip">iOS &amp; Android</span><span class="chip">$130M+ CN iOS</span>
+        <a class="link" href="https://apps.apple.com/us/app/langrisser/id1435314243">apps.apple.com/us/app/langrisser/id1435314243</a>
+      </div>
+      <ul class="item">
+        <li><strong>Core gameplay systems:</strong> Owned core modules (Battle Pass, Honor System, Peak Test dungeon) including logic for 10+ randomized events and complex UI state machines.</li>
+        <li><strong>Hot-update / OTA:</strong> Shipped OTA client logic updates via HybridCLR, enabling rapid code delivery without full app-store releases.</li>
+        <li><strong>Dialog system rebuild:</strong> Re-architected the effects-aware dialog system to eliminate content-related bugs, built on a high-reuse Prefab architecture.</li>
+        <li><strong>Mobile performance:</strong> Optimized long-list rendering (Peak Arena), restoring frame rate from ~10 fps drops to a stable 60 fps via DrawCall and GC optimizations (profiled with Unity Profiler / Frame Debugger).</li>
+      </ul>
+
+      <div class="proj">
+        <span class="pname">Action JRPG</span><span class="chip">Real-time Combat</span><span class="chip">Prototype</span>
+      </div>
+      <ul class="item">
+        <li><strong>Combat UI &amp; timing accuracy:</strong> Built an object-pooled combat UI and damage-number system, ensuring frame-perfect sync with damage resolution through repeated refactors.</li>
+        <li><strong>NavMesh customization:</strong> Customized an open-source NavMesh generator into a dedicated pathfinding plugin for complex sloped terrain.</li>
+        <li><strong>Editor tooling &amp; audio:</strong> Developed editor tools ('UI Layer Manager', 'Footstep Layer Editor') and an audio blending system for complex surface materials.</li>
+      </ul>
+
+      <div class="proj">
+        <span class="pname">Second Galaxy</span><span class="chip">Sci-fi MMO</span><span class="chip">iOS &amp; Android</span><span class="chip">Onboarding</span>
+        <a class="link" href="https://secondgalaxy.zlongame.com/index_en.html">secondgalaxy.zlongame.com/index_en.html</a>
+      </div>
+      <ul class="item">
+        <li><strong>Frontend development:</strong> Implemented frontend UI logic for the bounty system and leaderboards, quickly ramping up on a massive MMO codebase.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-h">
+        <div class="co">Wolf Smoke Studio <span class="role2">— Client Core Developer (side project)</span></div>
+        <div class="date">Dec 2022 — May 2023</div>
+      </div>
+      <div class="job-rule"></div>
+      <ul class="item">
+        <li><strong>0-to-1 architecture:</strong> Built the core client architecture and game lifecycle from scratch for a story-driven RPG.</li>
+        <li><strong>Resource pipeline:</strong> Built an Excel→JSON automation tool for game data deserialization, significantly improving level design iteration.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-h">
+        <div class="co">China Pacific Insurance (CPIC) <span class="role2">— Channel Account Manager (pre-game career)</span></div>
+        <div class="date">Sep 2012 — Jun 2018</div>
+      </div>
+      <div class="note">Self-taught CS while working full-time; earned an M.Eng. (Software Engineering, Fudan) and built C++ / Python &amp; machine-learning project experience before moving into game development.</div>
+    </div>
+  </section>
+
+  <!-- ============ 04 EDUCATION ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">04</span><span class="t">Education</span><span class="rule"></span></div>
+    <div class="edu">
+      <div>
+        <div class="edu-row">
+          <div><span class="sch">Fudan University</span> <span class="deg">— M.Eng., Software Engineering</span></div>
+          <div class="date">Sep 2015 — Jun 2018</div>
+        </div>
+        <div class="thesis">Thesis: "Design and Implementation of an Anomaly Defect Recognition System for Rail Fasteners" (CNN / CUDA / Caffe)</div>
+      </div>
+      <div class="edu-row">
+        <div><span class="sch">Shanghai Maritime University</span> <span class="deg">— B.Mgmt., Management Science</span></div>
+        <div class="date">Sep 2008 — Jun 2012</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

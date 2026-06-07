@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yue Wei · Senior Unity Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<script>
+    (function () {
+        try {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-name">YUE <b>WEI</b></div>
+      <div class="nav-links">
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <span class="icon-sun">&#9728;</span>
+            <span class="icon-moon">&#9789;</span>
+        </button>
+        <a class="dl-btn" href="resume2026.pdf" download="Yue-Wei-Resume-2026.pdf">Download Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="head-inner">
+      <div class="kicker">Game Client Engineering</div>
+      <h1 class="maintitle">Yue Wei</h1>
+      <div class="subtitle">Senior Unity Developer · Mobile (iOS / Android)</div>
+      <div class="contact">
+        <a href="mailto:genius0610@gmail.com">genius0610@gmail.com</a>
+        <span class="sep">/</span>
+        <span>+86 134 0203 7271</span>
+      </div>
+      <div><span class="avail">Remote-ready · English working language · Shanghai UTC+8</span></div>
+      <p class="summary">
+        7+ years building Unity 3D (C#) game clients for top-tier commercial mobile titles (iOS & Android), with shipped credits on <b>Langrisser Mobile</b> and <b>Second Galaxy</b>.<br><br>Deep expertise in <b>mobile client performance</b> — DrawCall reduction, GC and memory control, object pooling, and frame-rate stability across devices — plus UGUI internals and complex UI state-machine management. Experienced with <b>C# hot-update via HybridCLR</b> for over-the-air code delivery, high-reuse Prefab/UI architecture, and shipping complex gameplay systems on long-running titles.<br><br>Cross-language engineer (C# / Python / C++) who builds editor tools and asset/automation pipelines and collaborates closely with artists and designers; comfortable in multi-developer Git workflows.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ WORK ============ -->
+  <div class="sec-label fade-in" id="work">
+    <span class="tag-no">01</span><h2>Experience</h2><span class="rule"></span>
+  </div>
+
+  <main class="games">
+
+    <!-- Zlongame - Langrisser -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle"><a href="https://apps.apple.com/us/app/langrisser/id1435314243" target="_blank" rel="noopener">Langrisser Mobile</a></h2>
+          <div class="studio">Zlongame · Blackjack Studio — May 2019–Present</div>
+          <p class="blurb">Senior Game Client Developer on a long-running tactical RPG / SRPG (iOS & Android) — a major commercial success, with a reported $130M+ in first-year iOS revenue in China (industry estimates) and live-ops across CN / JP / KR / SEA and Western markets.</p>
+          <div class="contrib">
+
+            <ul>
+              <li><b>Core gameplay systems:</b> owned the Battle Pass (skins), Honor System, and Peak Test dungeon end-to-end on a long-running title — including logic for 10+ randomized events (black market, altar) and deeply nested popups.</li>
+              <li><b>Hot-update / OTA:</b> shipped client logic through HybridCLR-based C# hot-update, enabling over-the-air code delivery without full app-store releases.</li>
+              <li><b>Dialog system rebuild:</b> re-architected the multi-state, effects-aware dialog system, eliminating a long-standing class of bugs that surfaced whenever new dialog content was added; built a high-reuse Prefab system on top.</li>
+              <li><b>Mobile performance:</b> rebuilt rendering and caching for very long lists (Peak Arena), restoring frame rate from momentary ~10 fps drops to a stable 60 fps on device via draw-call and GC/memory optimization — profiled with Unity Profiler & Frame Debugger.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Unity 3D</li><li>C#</li><li>UGUI</li><li>HybridCLR</li><li>Performance Tuning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zlongame - Unreleased JRPG -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">Action JRPG — Prototype</h2>
+          <div class="studio">Zlongame · Blackjack Studio — May 2019–Present</div>
+          <p class="blurb">A real-time-combat action RPG prototype.</p>
+          <div class="contrib">
+
+            <ul>
+              <li><b>Combat UI & timing accuracy:</b> built the core combat UI and full-screen damage-number system — object-pooled by design to avoid native-API GC — keeping numbers perfectly in sync with damage resolution through repeated combat refactors and changing damage mechanics.</li>
+              <li><b>NavMesh customization:</b> customized a NavMesh generator from an open-source base and built a dedicated pathfinding plugin for complex sloped terrain, simplifying node configuration for large maps.</li>
+              <li><b>Editor tooling & audio:</b> built "UI Layer Manager" and "Footstep Layer Editor" to streamline art/design workflows; developed a footstep-sound blending system across complex surface materials.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Real-Time Combat</li><li>Combat UI</li><li>Object Pooling</li><li>NavMesh</li><li>Editor Tools</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Second Galaxy -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle"><a href="https://secondgalaxy.zlongame.com/index_en.html" target="_blank" rel="noopener">Second Galaxy</a></h2>
+          <div class="studio">Zlongame · Blackjack Studio — May 2019–Present</div>
+          <p class="blurb">A sci-fi MMO for iOS & Android — onboarding project.</p>
+          <div class="contrib">
+
+            <ul>
+              <li><b>Frontend development:</b> implemented front-end logic for the bounty-posting system and leaderboard as an onboarding project, ramping quickly on team engineering standards and a multi-developer workflow.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>MMO</li><li>Frontend UI</li><li>Multi-dev Workflow</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Wolf Smoke Studio -->
+    <section class="game fade-in">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">Indie RPG</h2>
+          <div class="studio">Wolf Smoke Studio — Dec 2022–May 2023</div>
+          <p class="blurb">A story-driven RPG. Client Core Developer (side project) — built the client architecture from the ground up.</p>
+          <div class="contrib">
+            <ul>
+                <li><b>0-to-1 architecture:</b> designed and built the core client architecture and full game lifecycle for an indie title from scratch, independent of any mature studio framework.</li>
+                <li><b>Resource pipeline:</b> built an Excel→JSON automation tool bridging data tables to client-side deserialization and loading, significantly improving iteration speed for game data and levels.</li>
+            </ul>
+          </div>
+          <ul class="tags">
+            <li>Story-Driven RPG</li><li>Indie</li><li>0-to-1 Architecture</li><li>Pipeline Automation</li><li>Python</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CPIC — pre-game background, condensed -->
+    <section class="game fade-in last">
+      <div class="game-inner">
+        <div class="left">
+          <h2 class="ptitle">Earlier — Career Transition</h2>
+          <div class="studio">China Pacific Insurance (CPIC) · Channel Account Manager — Sep 2012–Jun 2018</div>
+          <p class="blurb">Self-taught computer science while working full-time, earned an M.Eng. in Software Engineering from Fudan University, and built C++ / Python and machine-learning project experience before moving into game development.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ TOOLBOX ============ -->
+  <div class="sec-label fade-in" id="toolbox">
+    <span class="tag-no">02</span><h2>Skills & Toolbox</h2><span class="rule"></span>
+  </div>
+  <section class="toolbox fade-in">
+    <div class="tool-row"><div class="tool-key">Engine / Lang</div><div class="tool-val">Unity 3D <span class="dot">·</span> C# <span class="dot">·</span> C++ <span class="dot">·</span> Python</div></div>
+    <div class="tool-row"><div class="tool-key">Mobile Perf</div><div class="tool-val">DrawCall reduction <span class="dot">·</span> GC & memory control <span class="dot">·</span> object pooling <span class="dot">·</span> frame-rate stability <span class="dot">·</span> long-list rendering <span class="dot">·</span> Unity Profiler <span class="dot">·</span> Frame Debugger</div></div>
+    <div class="tool-row"><div class="tool-key">Client / UI</div><div class="tool-val">UGUI internals <span class="dot">·</span> state-machine mgmt <span class="dot">·</span> Prefab architecture <span class="dot">·</span> complex UI flows & dialog systems</div></div>
+    <div class="tool-row"><div class="tool-key">Pipeline</div><div class="tool-val">HybridCLR hot-update (OTA) <span class="dot">·</span> custom editor tools <span class="dot">·</span> asset pipeline <span class="dot">·</span> Excel→JSON automation <span class="dot">·</span> Git</div></div>
+    <div class="tool-row"><div class="tool-key">AI-Assisted Dev</div><div class="tool-val">Claude Code <span class="dot">·</span> Codex <span class="dot">·</span> Antigravity <span class="dot">·</span> MCP tooling</div></div>
+    <div class="tool-row"><div class="tool-key">Algorithms / Etc</div><div class="tool-val">Machine Learning / CNN <span class="dot">·</span> CUDA <span class="dot">·</span> Caffe</div></div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <div class="sec-label fade-in" id="education">
+    <span class="tag-no">03</span><h2>Education</h2><span class="rule"></span>
+  </div>
+  <section class="edu fade-in">
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">M.Eng., Software Engineering</span> &nbsp;<span class="edu-school">Fudan University</span></div>
+        <span class="edu-date">Sep 2015 — Jun 2018</span>
+      </div>
+      <div class="edu-note">"Design and Implementation of an Anomaly Defect Recognition System for Rail Fasteners" (CNN / CUDA / Caffe)</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-top">
+        <div><span class="edu-deg">B.Mgmt., Management Science</span> &nbsp;<span class="edu-school">Shanghai Maritime University</span></div>
+        <span class="edu-date">Sep 2008 — Jun 2012</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-hr"></div>
+    <p>&copy; 2026 Yue Wei · All rights reserved.</p>
+    <p class="mono">Unity / C# · Mobile (iOS & Android)</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
